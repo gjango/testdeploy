@@ -1,12 +1,11 @@
 <head><script>
-    function getHref(params) {
         const urlParams = new URLSearchParams(window.location.search);
         const code = urlParams.get('code');
-        return `com.appyapp://${code}`
-    }
+        const url = `com.appyapp://${code}`;
+       document.getElementById("appy").href = url;
 </script>
 </head>
 <body>
 <a href="exp://">expo</a>
-<a href="getHref()">appy</a>
+<a href="" id="appy">appy</a>
 </body>
