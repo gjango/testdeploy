@@ -5,13 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Page Title</title>
     <script>
-        function seturl() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const code = urlParams.get('code');
-            const url = `com.appyapp://${code}`;
-            document.getElementById("appy").href = url;
-        }
-        seturl();
+        document.addEventListener("DOMContentLoaded", function() {
+            function seturl() {
+                const urlParams = new URLSearchParams(window.location.search);
+                const code = urlParams.get('code');
+                console.log('Code:', code); // Log code for debugging
+                const url = `com.appyapp://${code}`;
+                console.log('URL:', url); // Log URL for debugging
+                const appyElement = document.getElementById("appy");
+                if (appyElement) {
+                    appyElement.href = url;
+                } else {
+                    console.error("Element with ID 'appy' not found.");
+                }
+            }
+            seturl();
+        });
     </script>
 </head>
 <body>
