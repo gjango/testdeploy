@@ -1,13 +1,21 @@
-<head><script>
-    function seturl{
-        const urlParams = new URLSearchParams(window.location.search);
-        const code = urlParams.get('code');
-        const url = `com.appyapp://${code}`;
-       document.getElementById("appy").href = url;}
-       seturl()
-</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
+    <script>
+        function seturl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const code = urlParams.get('code');
+            const url = `com.appyapp://${code}`;
+            document.getElementById("appy").href = url;
+        }
+        seturl();
+    </script>
 </head>
 <body>
-<a href="exp://">expo</a>
-<a href="" id="appy">appy</a>
+    <a href="exp://">expo</a>
+    <a href="" id="appy">appy</a>
 </body>
+</html>
