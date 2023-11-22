@@ -1,8 +1,10 @@
 <head><script>
+    function seturl{
         const urlParams = new URLSearchParams(window.location.search);
         const code = urlParams.get('code');
         const url = `com.appyapp://${code}`;
-       document.getElementById("appy").href = url;
+       document.getElementById("appy").href = url;}
+       seturl()
 </script>
 </head>
 <body>
