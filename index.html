@@ -37,7 +37,7 @@
                 const urlParams = new URLSearchParams(window.location.search);
                 const code = urlParams.get('code');
                 console.log('Code:', code); // Log code for debugging
-                const url = `com.appyapp://${code}`;
+                const url = `com.appyapp://list?code=${code}`;
                 console.log('URL:', url); // Log URL for debugging
                 const appyElement = document.getElementById("appy");
                 if (appyElement) {
