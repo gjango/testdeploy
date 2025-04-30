@@ -3,54 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Appy</title>
+    <title>Appy - Redirecting...</title>
     <style>
         body {
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100vh;
             margin: 0;
-            background-color: #f5f5f5; /* Set a light background color */
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
         }
-
+        #message {
+            margin-bottom: 20px;
+            text-align: center;
+        }
         #appy {
             font-size: 24px;
             text-decoration: none;
-            color: #fff; /* Set the link text color */
-            background-color: #3498db; /* Set a background color for the link */
-            border: 2px solid #2980b9; /* Border color for the link */
+            color: #fff;
+            background-color: #3498db;
+            border: 2px solid #2980b9;
             padding: 15px 30px;
             border-radius: 8px;
-            transition: background-color 0.3s, color 0.3s; /* Add a smooth transition on hover */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+            transition: background-color 0.3s, color 0.3s;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-
         #appy:hover {
-            background-color: #2980b9; /* Change background color on hover */
-            color: #fff; /* Change text color on hover */
+            background-color: #2980b9;
+            color: #fff;
+        }
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(0,0,0,0.1);
+            border-radius: 50%;
+            border-top-color: #3498db;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 10px;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
     </style>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            function seturl() {
-                const urlParams = new URLSearchParams(window.location.search);
-                const code = urlParams.get('code');
-                console.log('Code:', code); // Log code for debugging
-                const url = `com.appyapp://list?code=${code}`;
-                console.log('URL:', url); // Log URL for debugging
-                const appyElement = document.getElementById("appy");
-                if (appyElement) {
-                    appyElement.href = url;
-                } else {
-                    console.error("Element with ID 'appy' not found.");
-                }
+        // Function to attempt the automatic redirect
+        function attemptRedirect() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const code = urlParams.get('code');
+            console.log('Code:', code); // Log code for debugging
+            
+            const appUrl = `com.appyapp://list?code=${code}`;
+            console.log('App URL:', appUrl); // Log URL for debugging
+            
+            // Set the fallback button URL
+            const appyElement = document.getElementById("appy");
+            if (appyElement) {
+                appyElement.href = appUrl;
             }
-            seturl();
+            
+            // Update status message
+            document.getElementById('status').textContent = 'Redirecting to Appy...';
+            
+            // Try to redirect automatically
+            window.location.href = appUrl;
+            
+            // After a short timeout, change the message if still on the page
+            setTimeout(function() {
+                document.getElementById('status').textContent = 'If you were not redirected automatically, please click the button below:';
+                document.getElementById('loading').style.display = 'none';
+            }, 1500);
+        }
+        
+        // Execute when DOM is fully loaded
+        document.addEventListener("DOMContentLoaded", function() {
+            attemptRedirect();
         });
     </script>
 </head>
 <body>
+    <div id="message">
+        <p><span id="loading" class="loading"></span> <span id="status">Initializing redirect...</span></p>
+    </div>
     <a href="" id="appy">Open Appy</a>
 </body>
 </html>
