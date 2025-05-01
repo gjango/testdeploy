@@ -53,9 +53,10 @@
         function attemptRedirect() {
             const urlParams = new URLSearchParams(window.location.search);
             const code = urlParams.get('code');
+            const itemCode = urlParams.get('item-code');
             console.log('Code:', code); // Log code for debugging
             
-            const appUrl = `com.appyapp://list?code=${code}`;
+            const appUrl = `com.appyapp://list?code=${code}&itemCode=${itemCode}`;
             console.log('App URL:', appUrl); // Log URL for debugging
             
             // Set the fallback button URL
